@@ -1,2 +1,2 @@
 # Orderly
-A web application built with Clojure.
+A order-status-checking web application built with Clojure and ClojureScript.
