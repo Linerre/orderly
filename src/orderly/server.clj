@@ -2,15 +2,14 @@
   "Testing for now"
   (:require
    [org.httpkit.server :refer [run-server]]
-   [reitit.core :as r]))
+   ))
 
 
 ;; TODO
 ;; [x] start server with a message output on command line
-;; [ ] change the namespace to core/main/system or the like
-;; [ ] change the message output to command line
-;; [ ] add several routes
-;; [ ] add functions to start and stop the server
+;; [x] change the namespace to core/main/system or the like
+;; [x] change the message output to command line
+;; [x] add functions to start and stop the server
 
 (defn app [request]
   {:status 200,
@@ -39,9 +38,3 @@
   (stop-server)
   (println "Stopped the server and restarting ...")
   (start-server))
-
-(defn -main [& args]
-  (start-server))
-
-(comment
-  (-main))
