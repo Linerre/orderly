@@ -1,10 +1,44 @@
 {:path ["src"]
- :deps {org.clojure/clojure     {:mvn/version "1.10.3"},
-        metosin/reitit          {:mvn/version "0.5.5"},
-        ring/ring-jetty-adapter {:mvn/version "1.9.4"},}}
 
-;; {:path [:clj-paths :resource-paths]
-;;  :aliases;;  {:clj-paths ["src/clj" "src/cljc"]
-;;   :resource-paths ["resources"]}}
- ;; {:deps
- ;; {clojure.java-time/clojure.java-time {:mvn/version "0.3.2"}}}
+ ;; deps considerations:
+ ;; ======== HTTP-server ======
+ ;; [x] Aleph
+ ;; [-] http-kit
+;; http-kit/http-kit {:mvn/version "2.6.0-alpha1"}
+ ;; [-] ring-jetty
+
+ ;; ========= HTTP abst =======
+ ;; [x] ring-http-response
+ ;; [-] ring/response
+
+ ;; ========== Router =========
+ ;; [x] reitit
+ ;; [-] compojure
+ ;; compojure/compojure {:mvn/version "1.6.2"}
+
+ ;; ========== DATABASE =======
+ ;; [-] next.jdbc
+ ;; seancorfield/next.jdbc {:mvn/version "1.2.659"}
+ ;; com.github.seancorfield/next.jdbc {:mvn/version "1.2.761"}
+ ;; [-] hugsql
+ ;; com.layerware/hugsql {:mvn/version "0.5.1"}
+ ;; [-] postgresql
+ ;; org.postgresql/postgresql {:mvn/version "42.3.1"}
+ ;; [-] sqlite
+ ;; org.xerial/sqlite-jdbc {:mvn/version "3.34.0"}
+
+ ;; ========= Template ========
+ ;; [x] selmer (Django/Jinja-like)
+ ;; selmer/selmer {:mvn/version "1.12.49"}
+ ;; [-] hiccup (clojure-style)
+ ;; hiccup/hiccup {:mvn/version "2.0.0-alpha2"}
+
+ :deps {aleph/aleph                {:mvn/version "0.4.7-alpha10"},
+        http-kit/http-kit {:mvn/version "2.6.0-alpha1"},
+        metosin/reitit             {:mvn/version "0.5.5"},
+        metosin/ring-http-response {:mvn/version "0.9.3"},
+        org.clojure/clojure        {:mvn/version "1.10.3"},
+        ring/ring-core             {:mvn/version "1.9.4"},
+        ring/ring-defaults         {:mvn/version "0.3.3"},
+        ring/ring-jetty-adapter    {:mvn/version "1.9.4"},
+        selmer/selmer              {:mvn/version "1.12.49"}}}
