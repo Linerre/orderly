@@ -1,8 +1,9 @@
-(ns orderly.handler
+(ns orderly.server
   "Testing for now"
   (:require
    [org.httpkit.server :refer [run-server]]
-   ))
+   [ring.middleware.reload :refer [wrap-reload]]
+   [orderly.handlers :as hls]))
 
 
 ;; TODO
@@ -11,10 +12,10 @@
 ;; [x] change the message output to command line
 ;; [x] add functions to start and stop the server
 
-(defn app [request]
-  {:status 200,
-   :header {"Content-Type" "text/html"},
-   :body "hello HTTP!"})
+
+(def app
+  ;; wrap for dev only
+  (wrap-reload #'hls/my-handler))
 
 ;; server will not be re-defined by (def x)
 ;; atom makes server state independent of others
@@ -38,3 +39,5 @@
   (stop-server)
   (println "Stopped the server and restarting ...")
   (start-server))
+
+(comment (restart-server))
