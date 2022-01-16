@@ -4,19 +4,22 @@
   (:require
    [ring.util.http-response :as resp] ; ring-http-response
    ;; ring-compatible module while core is for data (serverless) only
-   [reitit.ring :as ritr]))
+   [reitit.ring :as ritr]
+   [orderly.views :as vs]))
 
 ;; TODO
 ;; [x] add a handler returning current IP
-;; [x] add a middleware to automatically reload the server a
+;; [x] add a middleware to automatically reload the server
 ;; [x] add a route returning another message
-
 
 (defn handler-one [request]
   (resp/ok
    (str "<html><body>Halo your IP is: "
      (:remote-addr request)
      "</body></html>")))
+
+(defn handler-home [request]
+  (resp/ok (vs/render-home)))
 
 (defn handler-two [request]
   {:status 200
@@ -25,7 +28,7 @@
 
 ;; routes
 (def my-routes
-  [["/" handler-one]
+  [["/" handler-home]
    ["/ping" handler-two]
    ["/pong/:id" ::user-id]])
 

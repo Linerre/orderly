@@ -30,9 +30,9 @@
 
 (defn stop-server [& args]
   (when-not (nil? @server)
-  (@server :timeout 100)
-  (reset! server nil)
-  (println "Server stopped!")))
+    (@server :timeout 100)
+    (reset! server nil)
+    (println "Server stopped!")))
 
 ;; restart = stop + start
 (defn restart-server []
