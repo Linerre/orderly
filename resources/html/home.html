@@ -3,13 +3,37 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Document</title>
+    <style>
+      h1 {
+        margin-left: 10px;
+        margin-right: auto;
+        text-align: center;
+      }
+      .nav {
+        border: #fa0000 solid 2px;
+        display: flex;
+        justify-content: center;
+      }
+      .nav a {
+        font-size: 15pt;
+        padding: 1rem;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Orderly - Checking your orders</h1>
     <div class="nav">
-      <button>{{item}}</button>
-      <button>CDL</button>
-      <button>Others</button>
+      <a href="http://{{resip}}:9009/reserves">
+        {{view1}}
+      </a>
+      <a href="http://{{resip}}:9009/cdl">
+        {{view2}}
+      </a>
+      <a href="http://{{resip}}:9009/other">
+        {{view3}}
+      </a>
     </div>
+    <p>Your IP is {{ip}}</p>
   </body>
 </html>
