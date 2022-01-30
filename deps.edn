@@ -4,7 +4,7 @@
  ;; ======== HTTP-server ======
  ;; [x] Aleph
  ;; [-] http-kit
-;; http-kit/http-kit {:mvn/version "2.6.0-alpha1"}
+ ;; http-kit/http-kit {:mvn/version "2.6.0-alpha1"}
  ;; [-] ring-jetty
 
  ;; ========= HTTP abst =======
@@ -35,6 +35,7 @@
 
  :deps
  {aleph/aleph                            {:mvn/version "0.4.7-alpha10"},
+  clojure.java-time/clojure.java-time    {:mvn/version "0.3.3"},
   com.github.seancorfield/next.jdbc      {:mvn/version "1.2.761"},
   com.layerware/hugsql                   {:mvn/version "0.5.1"},
   com.layerware/hugsql-adapter-next-jdbc {:mvn/version "0.5.1"},
