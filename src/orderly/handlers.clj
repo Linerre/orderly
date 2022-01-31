@@ -43,14 +43,11 @@
 
 ;; routes
 (def my-routes
-  [["/" {:get render-home}]
+  [["/" {:get handle-home}]
    ["/reserves" {:get handle-res}]
    ["/cdl" {:get handle-cdl}]
    ["/other" {:get handle-oth}]
-   ;; ["/cdl" (handler-page "cdl")]
-   ;; ["/others" (handler-page "others")]
-   ["/ping" handler-two]
-   ["/pong/:id" ::user-id]])
+   ])
 
 ;; TODO
 ;; [ ] Figure out why the following code doesn't work as expected
