@@ -25,3 +25,11 @@ I use "features" because at the moment I can't think of other better words.
 - Framework-less = Clojure way!
 
 I use Selmer for templating for now, but I may likely switch to Hiccup in the future.
+
+## Roadmap
+- [x] Set up server with http-kit
+  - [x] create fns for starting and stopping server
+  - [x] wrap the application with a dynamic reloading fn (dev only)
+- [ ] Routes
+  - [x] Three routes
+  - [ ]
