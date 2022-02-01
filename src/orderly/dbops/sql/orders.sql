@@ -11,7 +11,7 @@ CREATE TABLE rush_orders (
   vendor              VARCHAR(40),
   ordered             DATE NOT NULL DEFAULT CURRENT_DATE, -- order sent date
   arrival             DATE NOT NULL DEFAULT CURRENT_DATE, -- order arrival date
-  note                VARCHAR(100),
+  notes               VARCHAR(100),
   record_created_at   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )
 
@@ -20,12 +20,12 @@ CREATE TABLE rush_orders (
 -- :result :one
 -- :doc Insert one record into the table "orders"
 INSERT INTO rush_orders (order_num, vendor, ordered, arrival, note)
-  VALUES (:order_num, :vendor, :ordered::date, :arrival::date, :note);
+  VALUES (:order_num, :vendor, :ordered::date, :arrival::date, :notes);
 -- The :: is type casting feature of PG
 
 -- :name add-rush-orders
 -- :command :insert
 -- :result :many
 -- :doc Insert multi records into the table "orders"
-INSERT INTO rush_orders (order_num, order_date, arrival_date, lib_note)
-            VALUES (:order_num, :order_date::date, :arrival_date::date, :lib_note);
+INSERT INTO rush_orders (order_num, vendor, ordered, arrival, notes)
+            VALUES (:order_num, :vendor :order_date::date, :arrival_date::date, :lib_note);

@@ -15,10 +15,10 @@
 ;; must be installed.
 
 ;; For database operations, i.e., SQLs, refer to files
-;; under src/orderly/sql/*
+;; under src/orderly/dbops/sql/*.sql
 
 ;; Since the connection parameters contain passwd,
-;; This file should NOT be tracked/uploaded by git
+;; This file should better NOT be tracked/uploaded by git
 (def db
   ;; dbtype and dbname are preferred to be drop-in
   ;; replacement for subprotocol and subname
@@ -27,5 +27,5 @@
    :user     "jeeves",
    :password "wodehouse1915"})
 
-
+;; This ds is for the use with next.jdbc alone only
 (def ds (jdbc/get-datasource db))
