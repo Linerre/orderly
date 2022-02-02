@@ -1,5 +1,7 @@
 target/
 classes/
+pyenv/
+cred.json
 *.jar
 *.class
 .cpcache/
