@@ -26,9 +26,25 @@ I use "features" because at the moment I can't think of any other better words.
 I use Selmer for templating for now, but I may likely switch to Hiccup in the future.
 
 ## Python
-For now, this project relies on Python's `gspread` library to fetch data from Google Sheets.
+Since this project entails fetching data from Google Sheets, which in turn inevitably requires a library that wraps Google Apps APIs such as [Google Sheets API](https://developers.google.com/sheets/api/reference/rest). I have two options:
+1. Use Python with the `gspread` library: <https://github.com/burnash/gspread>
+2. Use Clojure with the `google-apps-clj` library: <https://github.com/SparkFund/google-apps-clj>
 
-This is the only part that involves Python. In the future, I will likely to replace this part with Clojure libraries out there.
+If I choose Python, I will need to rely on `psycopg` library to insert the data fetched from a specific sheet. I'm developing this project using a Apple Silicon MacBook Air (working remotely) and a Gentoo Linux PC (at my workplace). According to `psycopg` doc:
+>At the time of writing we don’t distribute binary packages for Apple M1 (ARM) processors.
+
+So I can't test database operations on my M1 machine, although I feel greately comfortable using Python to process data.
+
+Clojure does not have this problem, but I need to figure out how to use the library since there are few doc.
+
+At the time of writing, I'm still experimenting both possibilities.
+
+## Shell
+**NOTE**: The below method uses Google Spreadsheet API V3, but I prefer to use V4 instead. It is [google-apps-clj](https://github.com/SparkFund/google-apps-clj) that is used in this project.
+
+The shell script is used to install the necessary dependencies for Clojure to be able to fetch data from Google Sheets. I found the solution in a blog: https://tech.metail.com/reading-google-sheets-from-clojure/ [Accessed: 2022-02-02]
+
+I modified the shell script a bit to make it stick more to common shell code conventions.
 
 ## Roadmap
 - [x] Set up server with http-kit
