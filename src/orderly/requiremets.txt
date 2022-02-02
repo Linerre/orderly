@@ -6,6 +6,8 @@ google-auth-oauthlib==0.4.6
 gspread==5.1.1
 idna==3.3
 oauthlib==3.2.0
+psycopg==3.0.8
+psycopg-binary==3.0.8
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 requests==2.27.1

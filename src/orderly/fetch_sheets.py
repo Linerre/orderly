@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
+# std libs
 from os.path import join
 from pathlib import Path
 import pprint as pp
+
+# 3rd-parth libs
 import gspread
+import psycopg
 
 cred_file = join(Path.cwd(), 'cred.json')
 gc = gspread.service_account(
@@ -30,3 +34,6 @@ sh1 = rush_order_sh.sheet1
 sh1_title = sh1.title
 sh1_url   = sh1.url
 print(sh1_title, sh1_url)
+
+# TODO:
+# Insert the data fetched in the above steps into the database
