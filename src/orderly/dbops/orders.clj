@@ -22,6 +22,10 @@
 ;; defined in *.sql will look like
 (hugsql/def-sqlvec-fns "orderly/dbops/sql/orders.sql")
 
+
+;; TODO:
+;; Need to figure out how to update the table efficiently
+
 (add-rush-order-sqlvec {:order_num "NYUSH20200202",
                         :vendor    "Amazon",
                         :ordered   "2020-02-02",

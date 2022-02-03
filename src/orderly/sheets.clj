@@ -4,8 +4,9 @@
    [google-apps-clj.google-drive :as gdrive]
    [google-apps-clj.google-sheets-v4 :as gsheets]))
 
-;; If having no idea what the syntax would look like,
-;; cider will offer auto-completion options as you type
+;; For all the fns in this file to be run properly, make sure
+;; the env var GOOGLE_APPLICATION_CREDENTIALS is set (at least for the current
+;; shell session) and points to the correct credentials.json file
 
 ;; Define a service to pass to other handlers
 ;; Think of it as a connection request sent to Google API
