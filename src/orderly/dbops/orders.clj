@@ -4,10 +4,11 @@
    [hugsql.core :as hugsql]
    [hugsql.adapter.next-jdbc :as next-adapter]
    [java-time :as jt]
+   [orderly.sheets :as sh]
    ))
 
 ;; TODO:
-;; [ ] Figure out the adapter option:
+;; [x] Figure out the adapter option:
 ;; (hugsql/def-db-fns "path/to/db.sql"
 ;; {:adapter (next-adapter/hugsql-adapter-next-jdbc)})
 
