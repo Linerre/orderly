@@ -16,7 +16,11 @@
        creds  (gauth/default-credential scopes)]
     (gsheets/build-service creds)))
 
-(def spreadsheet-id "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68")
+(def rush-orders-spreadsheet-id "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68")
+
+(def cdl-spreadsheet-id)
+
+(def daily-orders-spreadsheet-id)
 
 ;; A table that is a vector of rows (which are also vectors)
 ;; [[row1] [row1] [row3] ... [row5]]
