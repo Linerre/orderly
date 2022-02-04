@@ -39,6 +39,7 @@
   com.github.seancorfield/next.jdbc      {:mvn/version "1.2.761"},
   com.layerware/hugsql                   {:mvn/version "0.5.1"},
   com.layerware/hugsql-adapter-next-jdbc {:mvn/version "0.5.1"},
+  com.zaxxer/HikariCP                    {:mvn/version "5.0.1"},
   google-apps-clj/google-apps-clj        {:mvn/version "0.6.1"},
   hiccup/hiccup                          {:mvn/version "2.0.0-alpha2"},
   hikari-cp/hikari-cp                    {:mvn/version "2.13.0"},
