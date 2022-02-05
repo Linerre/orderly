@@ -1,6 +1,5 @@
 (ns orderly.db
   (:require
-   [hikari-cp.core :as hcp]
    [hugsql.core :as hugsql]
    [hugsql.adapter.next-jdbc :as next-adapter]
    [next.jdbc :as jdbc]
@@ -13,48 +12,13 @@
 ;; This is the namespace where a database is defined and passed around among fns
 ;; next.jdbc itself provides fns to handle sqls (in strings).
 ;; HugSQL helps generate clj fns from pure *.sql files with special annotations.
-;; hikari-cp wraps up Java's Hikari-CP to make it easy to keep a connection pool.
-
-;; To use HugSQL instead, it will rely on clojure.java.jdbc by default.
-;; This will also need org.postgresql to be installed as a dependency.
-
-;; To use HugSQL and next.jdbc together, 'com.layerware/hugsql-adapter-next-jdb'
-;; must be installed.
 
 ;; For database operations (SQLs), refer to files under src/orderly/sql/*.sql.
 
-
 ;; ^:private will cause the var to be accessible only within this namespace
-
-(def datasource-options
-  {:auto-commit        true
-   :read-only          false
-   :connection-timeout 30000
-   :validation-timeout 5000
-   :idle-timeout       600000
-   :max-lifetime       1800000
-   :minimum-idle       10
-   :maximum-pool-size  20
-   :pool-name          "db-pool"
-   :dbtype             "postgresql"
-   :username           "jeeves"
-   :password           "wodehouse1915"
-   :database-name      "nyushlib"
-   :server-name        "localhost"
-   :port-number        5432
-   :register-mbeans    false})
-
 ;; a datasource is basically a database-turned object for use by jdbc.
-;; hikari-cp can create a pooled datasource obj which would otherwise be created
-;; using next.jdbc's get-datasource fn.
 
-(defonce datasource
-  (delay (hcp/make-datasource datasource-options)))
-
-(def database-connection {:datasource @datasource})
-
-
-(def ^:private db
+(def ^:private db-spec
   ;; dbtype and dbname are preferred to be drop-in
   ;; replacement for subprotocol and subname
   {:dbtype   "postgresql",
@@ -63,8 +27,15 @@
    :password "wodehouse1915"})
 
 
+;; need to use 'merge' from clojure
+(connection/->pool com.zaxxer.hikari.HikariConfig
+                   {:dbtype "postgres" :dbname "thedb" :username "dbuser" :password "secret"
+                    :dataSourceProperties {:socketTimeout 30}})
+
+;; using next.jdbc's get-datasource fn.
 ;; This ds is for the use with next.jdbc alone only
-(def ds (jdbc/get-datasource db))
+
+(def ds (jdbc/get-datasource db-spec))
 
 ;; This fn will make all the SQLs in orders.sql
 ;; into SQL fns in Clojure
