@@ -2,7 +2,9 @@
   (:require
    [hugsql.core :as hugsql]
    [hugsql.adapter.next-jdbc :as next-adapter]
+   [honey.sql :as hsql]
    [next.jdbc :as jdbc]
+   [next.jdbc.connection :as connection]
    [next.jdbc.sql :as jsql]
    [next.jdbc.result-set :as rs]
    [java-time :as jt]
@@ -21,21 +23,11 @@
 (def ^:private db-spec
   ;; dbtype and dbname are preferred to be drop-in
   ;; replacement for subprotocol and subname
+  ;; next.jdbc recognizes both `postgre' and `postgresql' with default port 5432
   {:dbtype   "postgresql",
    :dbname   "nyushlib",
-   :user     "jeeves",
+   :username "jeeves",
    :password "wodehouse1915"})
-
-
-;; need to use 'merge' from clojure
-(connection/->pool com.zaxxer.hikari.HikariConfig
-                   {:dbtype "postgres" :dbname "thedb" :username "dbuser" :password "secret"
-                    :dataSourceProperties {:socketTimeout 30}})
-
-;; using next.jdbc's get-datasource fn.
-;; This ds is for the use with next.jdbc alone only
-
-(def ds (jdbc/get-datasource db-spec))
 
 ;; This fn will make all the SQLs in orders.sql
 ;; into SQL fns in Clojure
@@ -47,16 +39,12 @@
 ;; defined in *.sql will look like
 (hugsql/def-sqlvec-fns "orderly/sql/orders.sql")
 
-;; Once there is a database available, pass it to next.jdbc's get-connection,
-;; and get a returned connection pool, which will in turn be the 1st argv of
-;; HugSQL-generated fns. See <Transactions> of HugSQL doc.
-(defn first-connect []
-  (add-rush-orders (jdbc/get-connection database-connection) {:orders sh/first-five-rows}))
+;; merge(-with) may be used to add/alter options set by HikariCP
+(with-open [^HikariDataSource ds (connection/->pool HikariDataSource db-spec)]
+  (.close (jdbc/get-connection ds))
+  (get-all-rush-orders ds))
 
-(comment
-  (defn first-connect []
-    (add-rush-orders database-connection {:orders sh/first-five-rows})))
-
+(comment)
 
 
 ;; TODO:
