@@ -59,8 +59,14 @@ I modified the shell script a bit to make it stick more to common shell code con
   - [x] Create \*.sql files containing SQL statements under sql/\*.sql
   - [x] Use `netx.jdbc` and `HugSQL` to create a table in the database
   - [x] Test `HugSQL`'s `def-sqlvec-fns` to see if SQL statements are right
-  - [x] Use `gspread` to fetch data from Google Sheets
+  - [x] ~Use `gspread` to fetch data from Google Sheets~
+  - [ ] Use pooled connections (provided by HikariCP)
+  - [ ] Use honeysql for dynamic SQLs
   - [ ] Properly store the fetched data for use by \*.clj files
 - [ ] Search Engine
   - [ ] Search by Title, ISBN, Order Number, Author, etc,.
   - [ ] Search by ID in the database
+- [ ] Set direnvs
+  - [ ] databse specs: username, passwd
+  - [ ] Google spreadsheet cred path
+  - [ ] Spreadsheets ids?
