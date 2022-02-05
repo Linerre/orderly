@@ -12,7 +12,7 @@
 -- :doc Create the rush orders table. All data is of string type.
 CREATE TABLE rush_orders (
   id                  SERIAL PRIMARY KEY,
-  order_num           VARCHAR(14) UNIQUE,
+  order_num           VARCHAR(30) UNIQUE,
   vendor              VARCHAR(40) NOT NULL,
   ordered             VARCHAR(20) NOT NULL,   -- order sent date
   arrival             VARCHAR(60),            -- order arrival date

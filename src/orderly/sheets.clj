@@ -19,6 +19,12 @@
 (defonce ^:private rush-orders-spreadsheet-id
   "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68")
 
+(defonce ^:private daily-orders-spreadhseet-id
+  "TBD")
+
+(defonce ^:private cdl-orders-spreadhseet-id
+  "TBD")
+
 
 ;; A table that is a vector of rows (which are also vectors)
 ;; [[row1] [row1] [row3] ... [row5]]
@@ -27,7 +33,12 @@
    (gsheets/get-cell-values
     service
     rush-orders-spreadsheet-id
-    ["local-orders-since-2020-3!A2:H6"]) [0]))
+    ["local-orders-since-202003!A2:H6"]) [0]))
+
+;; IMPORTANT: Google Sheets seems to provide APIs with A1 notations, that is,
+;; no such thing as get-last-row-number, so some manual work is expected!
+(comment
+  )
 
 (comment
   (gsheets/get-sheet-titles
@@ -35,7 +46,8 @@
    "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68"))
 
 (comment
+  ;; verify that the first-five-rows are returned
   (gsheets/get-cell-values
    service
    "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68"
-   ["local-orders-since-2020-3!A1:H3"]))
+   ["local-orders-since-202003!A2:H6"]))
