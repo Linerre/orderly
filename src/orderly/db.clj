@@ -11,7 +11,7 @@
    [orderly.sheets :as sh])
   (:import (com.zaxxer.hikari HikariDataSource)))
 
-;; This is the namespace where a database is defined and passed around among fns
+;; This is the namespace where a database is defined and passed around among fns.
 ;; next.jdbc itself provides fns to handle sqls (in strings).
 ;; HugSQL helps generate clj fns from pure *.sql files with special annotations.
 
