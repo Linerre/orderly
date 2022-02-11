@@ -10,17 +10,17 @@
 
 ;; Define a service to pass to other handlers
 ;; Think of it as a connection request sent to Google API
-(def service
+(defonce ^:private service
   (let
       [scopes [com.google.api.services.sheets.v4.SheetsScopes/SPREADSHEETS_READONLY]
        creds  (gauth/default-credential scopes)]
     (gsheets/build-service creds)))
 
-(defonce ^:private rush-orders-spreadsheet-id
+(defonce ^:private rush-orders-spreadsht-id
   "1V_4ot76E8RSgjZ08JiZzv0bGQzT8q0YV3cOye8C7m68")
 
-(defonce ^:private daily-orders-spreadhseet-id
-  "TBD")
+(defonce ^:private weekly-order-report-spreadsht-id
+  "1O8ZpdDwv-cQ-bK8oD_-HJz9VRDBMaoRoPJZxzRIwpjk")
 
 (defonce ^:private cdl-orders-spreadhseet-id
   "TBD")
@@ -35,6 +35,14 @@
     rush-orders-spreadsheet-id
     ["local-orders-since-202003!A2:H6"]) [0]))
 
+(defn all-rows
+  "Get all rows from a specific spreadsheet"
+  [spreadsht-id srv sht-name sht-range]
+  (get-in
+   (gsheets/get-cell-values
+    srv
+    spreadsht-id
+    [(str sht-name "!" sht-range)]) [0]))
 ;; IMPORTANT: Google Sheets seems to provide APIs with A1 notations, that is,
 ;; no such thing as get-last-row-number, so some manual work is expected!
 (comment
