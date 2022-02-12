@@ -1,38 +1,5 @@
 {:paths ["resources" "src"]
 
- ;; deps considerations:
- ;; ======== HTTP-server ======
- ;; [x] Aleph
- ;; [-] http-kit
- ;; http-kit/http-kit {:mvn/version "2.6.0-alpha1"}
- ;; [-] ring-jetty
-
- ;; ========= HTTP abst =======
- ;; [x] ring-http-response
- ;; [-] ring-core/response
-
- ;; ========== Router =========
- ;; [x] reitit
- ;; [-] compojure
- ;; compojure/compojure {:mvn/version "1.6.2"}
-
- ;; ========== DATABASE =======
- ;; [-] next.jdbc
- ;; seancorfield/next.jdbc {:mvn/version "1.2.659"}
- ;; com.github.seancorfield/next.jdbc {:mvn/version "1.2.761"}
- ;; [-] hugsql
- ;; com.layerware/hugsql {:mvn/version "0.5.1"}
- ;; [-] postgresql
- ;; org.postgresql/postgresql {:mvn/version "42.3.1"}
- ;; [-] sqlite
- ;; org.xerial/sqlite-jdbc {:mvn/version "3.34.0"}
-
- ;; ========= Template ========
- ;; [x] selmer (Django/Jinja-like)
- ;; selmer/selmer {:mvn/version "1.12.49"}
- ;; [-] hiccup (clojure-style)
- ;; hiccup/hiccup {:mvn/version "2.0.0-alpha2"}
-
  :deps
  {aleph/aleph                            {:mvn/version "0.4.7-alpha10"},
   clojure.java-time/clojure.java-time    {:mvn/version "0.3.3"},
@@ -40,6 +7,7 @@
   com.github.seancorfield/honeysql       {:mvn/version "2.2.861"},
   com.layerware/hugsql                   {:mvn/version "0.5.1"},
   com.layerware/hugsql-adapter-next-jdbc {:mvn/version "0.5.1"},
+  com.stuartsierra/component             {:mvn/version "1.0.0"},
   com.zaxxer/HikariCP                    {:mvn/version "5.0.1"},
   google-apps-clj/google-apps-clj        {:mvn/version "0.6.1"},
   hiccup/hiccup                          {:mvn/version "2.0.0-alpha2"},
@@ -47,9 +15,11 @@
   http-kit/http-kit                      {:mvn/version "2.6.0-alpha1"},
   metosin/reitit                         {:mvn/version "0.5.5"},
   metosin/ring-http-response             {:mvn/version "0.9.3"},
+  mount/mount                            {:mvn/version "0.1.16"},
   org.clojure/clojure                    {:mvn/version "1.10.3"},
   org.postgresql/postgresql              {:mvn/version "42.3.1"},
   org.xerial/sqlite-jdbc                 {:mvn/version "3.34.0"},
+  reagent/reagent                        {:mvn/version "1.1.0"},
   ring/ring-core                         {:mvn/version "1.9.4"},
   ring/ring-devel                        {:mvn/version "1.9.4"},
   ring/ring-defaults                     {:mvn/version "0.3.3"},
