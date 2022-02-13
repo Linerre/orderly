@@ -28,21 +28,24 @@
 
 ;; A table that is a vector of rows (which are also vectors)
 ;; [[row1] [row1] [row3] ... [row5]]
-(def first-five-rows
+(defn first-five-rows
+  "Get the first five rows from a spreadhseet."
+  [srv spreadsht-id sht-name]
   (get-in
    (gsheets/get-cell-values
-    service
-    rush-orders-spreadsheet-id
-    ["local-orders-since-202003!A2:H6"]) [0]))
+    srv
+    spreadsht-id
+    [(str sht-name "!" "A2:H6")]) [0]))
 
-(defn all-rows
-  "Get all rows from a specific spreadsheet"
+(defn get-n-rows
+  "Get n rows from a range in a spreadsheet"
   [spreadsht-id srv sht-name sht-range]
   (get-in
    (gsheets/get-cell-values
     srv
     spreadsht-id
     [(str sht-name "!" sht-range)]) [0]))
+
 ;; IMPORTANT: Google Sheets seems to provide APIs with A1 notations, that is,
 ;; no such thing as get-last-row-number, so some manual work is expected!
 (comment
